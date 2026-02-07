@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-console.log("Dashboard Version: 1.2.0 (GitHub Activity)");
+console.log("Dashboard Version: 2.0.0 (Command Center)");
 
 const firebaseConfig = {
   "projectId": "dashboard-amen-v2",
@@ -29,15 +29,14 @@ function renderCards() {
         : allProjects.filter(p => p.group === currentFilter);
 
     if (filtered.length === 0) {
-        dashboard.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--text-secondary); margin-top: 50px;">No projects found in this category.</p>';
+        dashboard.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--text-secondary); margin-top: 50px;">No projects found.</p>';
         return;
     }
 
     filtered.forEach(project => {
         const card = document.createElement('div');
-        card.className = 'project-card';
+        card.className = `project-card ${project.agentActive ? 'agent-active' : ''}`;
         
-        // Format relative time if possible
         let commitHtml = '';
         if (project.lastCommit) {
             const date = new Date(project.lastCommit.date);
@@ -49,11 +48,14 @@ function renderCards() {
                     <div class="commit-meta">${timeStr} by ${project.lastCommit.author}</div>
                 </div>
             `;
-        } else {
-            commitHtml = `
-                <div class="github-activity no-activity">
-                    <div class="activity-title">LATEST SUBMIT</div>
-                    <div class="commit-meta">No GitHub records found</div>
+        }
+
+        // V2 Terminal Section
+        let terminalHtml = '';
+        if (project.agentActive && project.agentLogs) {
+            terminalHtml = `
+                <div class="agent-terminal">
+                    ${project.agentLogs.map(log => `<div class="terminal-line">${log}</div>`).join('')}
                 </div>
             `;
         }
@@ -61,7 +63,9 @@ function renderCards() {
         card.innerHTML = `
             <div class="card-header">
                 <div>
-                    <h2 class="project-name">${project.name}</h2>
+                    <h2 class="project-name">
+                        <span class="agent-pulse"></span>${project.name}
+                    </h2>
                     <span class="group-tag">${project.group}</span>
                 </div>
                 <div class="status-tag" style="font-size: 0.75rem; color: var(--text-secondary);">${project.status}</div>
@@ -76,6 +80,7 @@ function renderCards() {
                 </div>
             </div>
             ${commitHtml}
+            ${terminalHtml}
             <div class="todo-section">
                 <h3 class="todo-title">To-Do List</h3>
                 <ul class="todo-list">
@@ -97,8 +102,7 @@ function renderCards() {
 onSnapshot(collection(db, "projects"), (querySnapshot) => {
     allProjects = [];
     querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        allProjects.push({ id: doc.id, ...data });
+        allProjects.push({ id: doc.id, ...doc.data() });
     });
     renderCards();
 });
