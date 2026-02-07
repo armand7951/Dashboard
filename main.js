@@ -20,12 +20,18 @@ let currentFilter = 'all';
 let allProjects = [];
 
 function renderCards() {
+    console.log(`Rendering cards for filter: ${currentFilter}`);
     dashboard.innerHTML = '';
     const filtered = currentFilter === 'all' 
         ? allProjects 
         : allProjects.filter(p => p.group === currentFilter);
 
-    filtered.forEach(project => {
+    console.log(`Filtered projects count: ${filtered.length}`);
+    
+    if (filtered.length === 0) {
+        dashboard.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--text-secondary);">No projects found in this category.</p>';
+        return;
+    }
         const card = document.createElement('div');
         card.className = 'project-card';
         card.innerHTML = `
