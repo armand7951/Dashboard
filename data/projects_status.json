@@ -1,16 +1,201 @@
 [
-  {"id": "dt-admin", "name": "DT 管理員介面", "group": "Deoteng", "progress": 75, "status": "In Progress", "todos": ["Fix login bug", "Update UI"]},
-  {"id": "dt-wiki", "name": "DT 百科", "group": "Deoteng", "progress": 50, "status": "In Progress", "todos": ["Content review"]},
-  {"id": "dt-money", "name": "DT 零用金", "group": "Deoteng", "progress": 100, "status": "Completed", "todos": []},
-  {"id": "dt-internal", "name": "DT 工商管理", "group": "Deoteng", "progress": 20, "status": "In Progress", "todos": ["Database design"]},
-  {"id": "dt-meeting", "name": "DT 會議室管理", "group": "Deoteng", "progress": 10, "status": "In Progress", "todos": ["Requirement analysis"]},
-  
-  {"id": "v-tapok", "name": "V TapOk", "group": "Verdict Ai", "progress": 40, "status": "In Progress", "todos": ["API Integration"]},
-  {"id": "v-paytowake", "name": "V Pay to wake", "group": "Verdict Ai", "progress": 15, "status": "In Progress", "todos": ["MVP design"]},
-  {"id": "v-pawmatch", "name": "V Paw match", "group": "Verdict Ai", "progress": 5, "status": "In Progress", "todos": ["Project setup"]},
-  
-  {"id": "gather", "name": "Gather", "group": "Gather", "progress": 90, "status": "In Progress", "todos": ["Bug fixes"]},
-  {"id": "dayinup-2026", "name": "DayinUP-2026", "group": "Gather", "progress": 60, "status": "In Progress", "todos": ["Plan next phase"]},
-  {"id": "dating-up", "name": "Dating UP", "group": "Gather", "progress": 30, "status": "In Progress", "todos": ["UI mockups"]},
-  {"id": "dashboard", "name": "Dashboard", "group": "Gather", "progress": 100, "status": "Completed", "todos": ["Firebase sync"]}
+  {
+    "id": "dt-admin",
+    "name": "DT 管理員介面",
+    "group": "Deoteng",
+    "progress": 75,
+    "status": "In Progress",
+    "todos": [
+      "Fix login bug",
+      "Update UI"
+    ]
+  },
+  {
+    "id": "dt-wiki",
+    "name": "DT 百科",
+    "group": "Deoteng",
+    "progress": 50,
+    "status": "In Progress",
+    "todos": [
+      "Content review"
+    ]
+  },
+  {
+    "id": "dt-money",
+    "name": "DT 零用金",
+    "group": "Deoteng",
+    "progress": 100,
+    "status": "Completed",
+    "todos": []
+  },
+  {
+    "id": "dt-internal",
+    "name": "DT 工商管理",
+    "group": "Deoteng",
+    "progress": 20,
+    "status": "In Progress",
+    "todos": [
+      "Database design"
+    ]
+  },
+  {
+    "id": "dt-meeting",
+    "name": "DT 會議室管理",
+    "group": "Deoteng",
+    "progress": 10,
+    "status": "In Progress",
+    "todos": [
+      "Requirement analysis"
+    ]
+  },
+  {
+    "id": "v-tapok",
+    "name": "V TapOk",
+    "group": "Verdict Ai",
+    "progress": 40,
+    "status": "In Progress",
+    "todos": [
+      "API Integration"
+    ]
+  },
+  {
+    "id": "v-paytowake",
+    "name": "V Pay to wake",
+    "group": "Verdict Ai",
+    "progress": 15,
+    "status": "In Progress",
+    "todos": [
+      "MVP design"
+    ]
+  },
+  {
+    "id": "v-pawmatch",
+    "name": "V Paw match",
+    "group": "Verdict Ai",
+    "progress": 5,
+    "status": "In Progress",
+    "todos": [
+      "Project setup"
+    ]
+  },
+  {
+    "id": "gather",
+    "name": "Gather",
+    "group": "Gather",
+    "progress": 90,
+    "status": "In Progress",
+    "todos": [
+      "Bug fixes"
+    ]
+  },
+  {
+    "id": "dayinup-2026",
+    "name": "DayinUP-2026",
+    "group": "Gather",
+    "progress": 60,
+    "status": "In Progress",
+    "todos": [
+      "Plan next phase"
+    ]
+  },
+  {
+    "id": "dating-up",
+    "name": "Dating UP",
+    "group": "Gather",
+    "progress": 30,
+    "status": "In Progress",
+    "todos": [
+      "UI mockups"
+    ]
+  },
+  {
+    "id": "dashboard",
+    "name": "Dashboard",
+    "group": "Gather",
+    "progress": 100,
+    "status": "Completed",
+    "todos": [
+      "Firebase sync"
+    ]
+  },
+  {
+    "id": "dt-管理員介面",
+    "name": "DT 管理員介面",
+    "group": "Deoteng",
+    "progress": 0,
+    "status": "New Discovery",
+    "todos": [
+      "Initial setup"
+    ]
+  },
+  {
+    "id": "dayinup-2024",
+    "name": "DayinUP 2024",
+    "group": "Gather",
+    "progress": 0,
+    "status": "New Discovery",
+    "todos": [
+      "Initial setup"
+    ]
+  },
+  {
+    "id": "dt-百科",
+    "name": "DT 百科",
+    "group": "Deoteng",
+    "progress": 0,
+    "status": "New Discovery",
+    "todos": [
+      "Initial setup"
+    ]
+  },
+  {
+    "id": "dt-工商管理",
+    "name": "DT 工商管理",
+    "group": "Deoteng",
+    "progress": 0,
+    "status": "New Discovery",
+    "todos": [
+      "Initial setup"
+    ]
+  },
+  {
+    "id": "v-pay-to-wake",
+    "name": "V Pay to wake",
+    "group": "Verdict Ai",
+    "progress": 0,
+    "status": "New Discovery",
+    "todos": [
+      "Initial setup"
+    ]
+  },
+  {
+    "id": "dt-零用金",
+    "name": "DT 零用金",
+    "group": "Deoteng",
+    "progress": 0,
+    "status": "New Discovery",
+    "todos": [
+      "Initial setup"
+    ]
+  },
+  {
+    "id": "v-paw-match",
+    "name": "V Paw match",
+    "group": "Verdict Ai",
+    "progress": 0,
+    "status": "New Discovery",
+    "todos": [
+      "Initial setup"
+    ]
+  },
+  {
+    "id": "dt-會議室管理",
+    "name": "DT 會議室管理",
+    "group": "Deoteng",
+    "progress": 0,
+    "status": "New Discovery",
+    "todos": [
+      "Initial setup"
+    ]
+  }
 ]
