@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-console.log("Dashboard Version: 1.1.0 (Firestore Live)");
+console.log("Dashboard Version: 1.2.0 (GitHub Activity)");
 
 const firebaseConfig = {
   "projectId": "dashboard-amen-v2",
@@ -22,14 +22,11 @@ let currentFilter = 'all';
 let allProjects = [];
 
 function renderCards() {
-    console.log(`Rendering cards for filter: ${currentFilter}`);
     dashboard.innerHTML = '';
     
     const filtered = currentFilter === 'all' 
         ? allProjects 
         : allProjects.filter(p => p.group === currentFilter);
-
-    console.log(`Total projects: ${allProjects.length}, Filtered: ${filtered.length}`);
 
     if (filtered.length === 0) {
         dashboard.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--text-secondary); margin-top: 50px;">No projects found in this category.</p>';
@@ -39,6 +36,28 @@ function renderCards() {
     filtered.forEach(project => {
         const card = document.createElement('div');
         card.className = 'project-card';
+        
+        // Format relative time if possible
+        let commitHtml = '';
+        if (project.lastCommit) {
+            const date = new Date(project.lastCommit.date);
+            const timeStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            commitHtml = `
+                <div class="github-activity">
+                    <div class="activity-title">LATEST SUBMIT</div>
+                    <div class="commit-msg">"${project.lastCommit.message}"</div>
+                    <div class="commit-meta">${timeStr} by ${project.lastCommit.author}</div>
+                </div>
+            `;
+        } else {
+            commitHtml = `
+                <div class="github-activity no-activity">
+                    <div class="activity-title">LATEST SUBMIT</div>
+                    <div class="commit-meta">No GitHub records found</div>
+                </div>
+            `;
+        }
+
         card.innerHTML = `
             <div class="card-header">
                 <div>
@@ -56,6 +75,7 @@ function renderCards() {
                     <div class="progress-bar" style="width: ${project.progress}%"></div>
                 </div>
             </div>
+            ${commitHtml}
             <div class="todo-section">
                 <h3 class="todo-title">To-Do List</h3>
                 <ul class="todo-list">

@@ -187,8 +187,39 @@ h1 {
     transition: all 0.2s ease;
 }
 
-.feedback-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--accent-color);
+.github-activity {
+    margin: 15px 0;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border-left: 3px solid var(--accent-color);
+}
+
+.activity-title {
+    font-size: 0.65rem;
+    font-weight: 800;
     color: var(--accent-color);
+    margin-bottom: 5px;
+    letter-spacing: 0.05em;
+}
+
+.commit-msg {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.commit-meta {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.no-activity {
+    border-left-color: #475569;
+    opacity: 0.6;
 }
