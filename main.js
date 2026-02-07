@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+console.log("Dashboard Version: 1.1.0 (Firestore Live)");
+
 const firebaseConfig = {
   "projectId": "dashboard-amen-v2",
   "appId": "1:846149076695:web:8325caa2bf24a4b9531292",
@@ -22,25 +24,28 @@ let allProjects = [];
 function renderCards() {
     console.log(`Rendering cards for filter: ${currentFilter}`);
     dashboard.innerHTML = '';
+    
     const filtered = currentFilter === 'all' 
         ? allProjects 
         : allProjects.filter(p => p.group === currentFilter);
 
-    console.log(`Filtered projects count: ${filtered.length}`);
-    
+    console.log(`Total projects: ${allProjects.length}, Filtered: ${filtered.length}`);
+
     if (filtered.length === 0) {
-        dashboard.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--text-secondary);">No projects found in this category.</p>';
+        dashboard.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--text-secondary); margin-top: 50px;">No projects found in this category.</p>';
         return;
     }
+
+    filtered.forEach(project => {
         const card = document.createElement('div');
         card.className = 'project-card';
         card.innerHTML = `
             <div class="card-header">
                 <div>
                     <h2 class="project-name">${project.name}</h2>
-                    <span class="group-tag">${project.group} Group</span>
+                    <span class="group-tag">${project.group}</span>
                 </div>
-                <div class="status-tag">${project.status}</div>
+                <div class="status-tag" style="font-size: 0.75rem; color: var(--text-secondary);">${project.status}</div>
             </div>
             <div class="progress-section">
                 <div class="progress-label">
@@ -64,17 +69,16 @@ function renderCards() {
         dashboard.appendChild(card);
     });
 
-    // Add listeners to feedback buttons
     document.querySelectorAll('.feedback-btn').forEach(btn => {
         btn.addEventListener('click', () => openFeedback(btn.dataset.id));
     });
 }
 
-// Real-time listener
 onSnapshot(collection(db, "projects"), (querySnapshot) => {
     allProjects = [];
     querySnapshot.forEach((doc) => {
-        allProjects.push({ id: doc.id, ...doc.data() });
+        const data = doc.data();
+        allProjects.push({ id: doc.id, ...data });
     });
     renderCards();
 });
@@ -89,7 +93,7 @@ filterBtns.forEach(btn => {
 });
 
 async function openFeedback(id) {
-    const feedbackText = prompt("Please enter your feedback:");
+    const feedbackText = prompt(`Enter feedback for project [${id}]:`);
     if (feedbackText) {
         try {
             await addDoc(collection(db, "feedback"), {
@@ -100,7 +104,7 @@ async function openFeedback(id) {
             alert("Feedback submitted successfully!");
         } catch (e) {
             console.error("Error adding feedback: ", e);
-            alert("Failed to submit feedback. Check console for details.");
+            alert("Failed to submit feedback.");
         }
     }
 }
