@@ -1,5 +1,16 @@
 [
-  {"id": "dt-admin", "name": "Deoteng 管理員介面", "group": "Deoteng", "progress": 75, "status": "In Progress", "todos": ["Fix login bug", "Update UI"]},
-  {"id": "b-project-1", "name": "Verdict Ai 項目 1", "group": "Verdict Ai", "progress": 30, "status": "Delayed", "todos": ["Initial research"]},
-  {"id": "dt-money", "name": "Deoteng 零用金", "group": "Deoteng", "progress": 100, "status": "Completed", "todos": []}
+  {"id": "dt-admin", "name": "DT 管理員介面", "group": "Dalton", "progress": 75, "status": "In Progress", "todos": ["Fix login bug", "Update UI"]},
+  {"id": "dt-wiki", "name": "DT 百科", "group": "Dalton", "progress": 50, "status": "In Progress", "todos": ["Content review"]},
+  {"id": "dt-money", "name": "DT 零用金", "group": "Dalton", "progress": 100, "status": "Completed", "todos": []},
+  {"id": "dt-internal", "name": "DT 工商管理", "group": "Dalton", "progress": 20, "status": "In Progress", "todos": ["Database design"]},
+  {"id": "dt-meeting", "name": "DT 會議室管理", "group": "Dalton", "progress": 10, "status": "In Progress", "todos": ["Requirement analysis"]},
+  
+  {"id": "v-tapok", "name": "V TapOk", "group": "Verdict Ai", "progress": 40, "status": "In Progress", "todos": ["API Integration"]},
+  {"id": "v-paytowake", "name": "V Pay to wake", "group": "Verdict Ai", "progress": 15, "status": "In Progress", "todos": ["MVP design"]},
+  {"id": "v-pawmatch", "name": "V Paw match", "group": "Verdict Ai", "progress": 5, "status": "In Progress", "todos": ["Project setup"]},
+  
+  {"id": "gather", "name": "Gather", "group": "Personal", "progress": 90, "status": "In Progress", "todos": ["Bug fixes"]},
+  {"id": "dayinup-2026", "name": "DayinUP-2026", "group": "Personal", "progress": 60, "status": "In Progress", "todos": ["Plan next phase"]},
+  {"id": "dating-up", "name": "Dating UP", "group": "Personal", "progress": 30, "status": "In Progress", "todos": ["UI mockups"]},
+  {"id": "dashboard", "name": "Dashboard", "group": "Personal", "progress": 100, "status": "Completed", "todos": ["Firebase sync"]}
 ]
