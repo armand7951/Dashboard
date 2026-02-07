@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-console.log("Dashboard Version: 2.0.0 (Command Center)");
+console.log("Dashboard Version: 2.1.0 (Frontier Force)");
 
 const firebaseConfig = {
   "projectId": "dashboard-amen-v2",
@@ -16,14 +16,35 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const dashboard = document.getElementById('dashboard');
+const staffContainer = document.getElementById('ai-staff');
 const filterBtns = document.querySelectorAll('.filter-btn');
 
 let currentFilter = 'all';
 let allProjects = [];
+let allStaff = [];
+
+function renderStaff() {
+    staffContainer.innerHTML = '';
+    allStaff.forEach(staff => {
+        const card = document.createElement('div');
+        card.className = 'staff-card';
+        card.innerHTML = `
+            <div class="staff-avatar">${staff.avatar}</div>
+            <div class="staff-info">
+                <h3>${staff.name}</h3>
+                <p>${staff.role}</p>
+                <span class="staff-status">${staff.status}</span>
+                <div class="staff-load-bar">
+                    <div class="staff-load-fill" style="width: ${staff.load}%"></div>
+                </div>
+            </div>
+        `;
+        staffContainer.appendChild(card);
+    });
+}
 
 function renderCards() {
     dashboard.innerHTML = '';
-    
     const filtered = currentFilter === 'all' 
         ? allProjects 
         : allProjects.filter(p => p.group === currentFilter);
@@ -50,7 +71,6 @@ function renderCards() {
             `;
         }
 
-        // V2 Terminal Section
         let terminalHtml = '';
         if (project.agentActive && project.agentLogs) {
             terminalHtml = `
@@ -99,12 +119,22 @@ function renderCards() {
     });
 }
 
+// Listen for Projects
 onSnapshot(collection(db, "projects"), (querySnapshot) => {
     allProjects = [];
     querySnapshot.forEach((doc) => {
         allProjects.push({ id: doc.id, ...doc.data() });
     });
     renderCards();
+});
+
+// Listen for Staff
+onSnapshot(collection(db, "agents"), (querySnapshot) => {
+    allStaff = [];
+    querySnapshot.forEach((doc) => {
+        allStaff.push({ id: doc.id, ...doc.data() });
+    });
+    renderStaff();
 });
 
 filterBtns.forEach(btn => {

@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Project Dashboard</h1>
+            <h1>Project Dashboard <span style="font-weight: 300; font-size: 1.2rem; opacity: 0.5;">v2.1 Frontier Edition</span></h1>
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="Gather">Gather</button>
@@ -18,7 +18,16 @@
                 <button class="filter-btn" data-filter="Verdict Ai">Verdict Ai</button>
             </div>
         </header>
-        <div id="dashboard" class="dashboard-grid"></div>
+
+        <section class="frontier-force-section">
+            <h2 class="section-title">FRONTIER FORCE (AI STAFF)</h2>
+            <div id="ai-staff" class="staff-grid"></div>
+        </section>
+
+        <section>
+            <h2 class="section-title">MISSION CONTROL</h2>
+            <div id="dashboard" class="dashboard-grid"></div>
+        </section>
     </div>
     <script type="module" src="main.js"></script>
 </body>
