@@ -8,7 +8,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <!-- Login Screen -->
+    <div id="auth-container">
+        <div class="login-card">
+            <h2 style="font-family: 'Inter', sans-serif; letter-spacing: -0.05em;">FRONTIER <span style="color: var(--accent-color);">DASHBOARD</span></h2>
+            <div id="login-form">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="login-email" placeholder="name@company.com">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••">
+                </div>
+                <button id="login-btn" class="login-btn">Secure Login</button>
+                <p id="login-error" style="color: #f87171; font-size: 0.8rem; margin-top: 15px;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden initially) -->
+    <div id="main-content" class="container hidden">
+        <div class="nav-user">
+            <span id="user-display-name">Loading...</span>
+            <button id="logout-btn" class="logout-btn">Logout</button>
+        </div>
         <header>
             <h1>Project Dashboard <span style="font-weight: 300; font-size: 1.2rem; opacity: 0.5;">v2.1 Frontier Edition</span></h1>
             <div class="filter-buttons">
@@ -29,6 +53,30 @@
             <div id="dashboard" class="dashboard-grid"></div>
         </section>
     </div>
+
+    <!-- Task Modal -->
+    <div id="task-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-project-name">Project Name</h2>
+                <button id="close-modal" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="task-column-title">
+                        <span>TO-DO</span>
+                        <button id="add-task-btn" style="background: none; border: none; color: var(--accent-color); cursor: pointer; font-size: 0.7rem; font-weight: 800;">+ NEW TASK</button>
+                    </div>
+                    <div id="modal-todo-list" class="task-list-full"></div>
+                </div>
+                <div>
+                    <div class="task-column-title">DONE</div>
+                    <div id="modal-done-list" class="task-list-full"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="main.js"></script>
 </body>
 </html>
